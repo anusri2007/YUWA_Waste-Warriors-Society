@@ -23,3 +23,4 @@ function SearchBar({ value, onChange, placeholder = "Search...", onClear }) {
 }
 
 export default SearchBar;
+

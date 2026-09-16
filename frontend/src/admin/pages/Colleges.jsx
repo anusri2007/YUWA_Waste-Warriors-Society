@@ -561,3 +561,4 @@ function Colleges() {
 }
 
 export default Colleges;
+

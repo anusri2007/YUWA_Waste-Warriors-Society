@@ -113,3 +113,4 @@ function CollegeTable({
 }
 
 export default CollegeTable;
+

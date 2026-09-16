@@ -22,3 +22,4 @@ function FormModal({ isOpen, title, onClose, children, maxWidth = "580px" }) {
 }
 
 export default FormModal;
+

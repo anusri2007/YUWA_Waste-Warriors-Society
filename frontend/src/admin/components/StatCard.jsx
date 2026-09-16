@@ -17,3 +17,4 @@ function StatCard({ title, value, icon, description, badge }) {
 }
 
 export default StatCard;
+
