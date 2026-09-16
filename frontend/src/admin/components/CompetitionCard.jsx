@@ -61,3 +61,4 @@ function CompetitionCard({ competition, onEdit, onDelete, onViewDetails }) {
 }
 
 export default CompetitionCard;
+
