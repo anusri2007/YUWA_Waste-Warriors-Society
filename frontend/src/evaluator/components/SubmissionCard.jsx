@@ -1,9 +1,10 @@
+
 function SubmissionCard({ submission, onReview }) {
   return (
     <div className="submission-card">
       <div className="submission-info">
         <div className="team-avatar">
-          {submission.team.charAt(0)}
+          {submission.team ? submission.team.charAt(0) : "T"}
         </div>
 
         <div>
@@ -19,14 +20,22 @@ function SubmissionCard({ submission, onReview }) {
 
       <div className="submission-time">
         <span>Submitted</span>
-        <strong>{submission.time}</strong>
+        <strong>{submission.submitted || submission.time || "Recently"}</strong>
+      </div>
+
+      <div className="submission-status-indicator">
+        <span className={`status-badge ${submission.status}`}>
+          {submission.status === "pending" && "Pending"}
+          {submission.status === "evaluated" && (submission.score || "Evaluated")}
+          {submission.status === "rejected" && "Rejected"}
+        </span>
       </div>
 
       <button
         className="review-btn"
         onClick={() => onReview(submission)}
       >
-        Review →
+        {submission.status === "pending" ? "Review →" : "View →"}
       </button>
     </div>
   );

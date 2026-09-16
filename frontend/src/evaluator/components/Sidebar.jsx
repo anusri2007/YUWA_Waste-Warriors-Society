@@ -1,29 +1,28 @@
-function Sidebar({ activePage, onNavigate }) {
+import { useNavigate, useLocation } from "react-router-dom";
+
+function Sidebar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <aside className="sidebar">
 
-      {/* BRAND */}
       <div className="brand">
-
-        <div className="brand-logo">
-          🌱
-        </div>
+        <div className="brand-logo">🌱</div>
 
         <div>
           <h2>YUWA</h2>
           <span>Ecolympics</span>
         </div>
-
       </div>
 
-      {/* NAVIGATION */}
       <nav className="sidebar-nav">
 
         <button
           className={`nav-item ${
-            activePage === "dashboard" ? "active" : ""
+            location.pathname === "/" ? "active" : ""
           }`}
-          onClick={() => onNavigate("dashboard")}
+          onClick={() => navigate("/")}
         >
           <span>⌂</span>
           Dashboard
@@ -31,9 +30,9 @@ function Sidebar({ activePage, onNavigate }) {
 
         <button
           className={`nav-item ${
-            activePage === "submissions" ? "active" : ""
+            location.pathname.startsWith("/submissions") ? "active" : ""
           }`}
-          onClick={() => onNavigate("submissions")}
+          onClick={() => navigate("/submissions")}
         >
           <span>▣</span>
           Submissions
@@ -41,9 +40,9 @@ function Sidebar({ activePage, onNavigate }) {
 
         <button
           className={`nav-item ${
-            activePage === "analytics" ? "active" : ""
+            location.pathname === "/analytics" ? "active" : ""
           }`}
-          onClick={() => onNavigate("analytics")}
+          onClick={() => navigate("/analytics")}
         >
           <span>◈</span>
           Analytics
@@ -51,15 +50,24 @@ function Sidebar({ activePage, onNavigate }) {
 
       </nav>
 
-      {/* BOTTOM */}
       <div className="sidebar-bottom">
 
-        <button className="nav-item">
+        <button
+          className="nav-item"
+          onClick={() => alert("Evaluator settings: Notification preferences & profile management.")}
+        >
           <span>⚙</span>
           Settings
         </button>
 
-        <button className="nav-item logout">
+        <button
+          className="nav-item logout"
+          onClick={() => {
+            if (window.confirm("Are you sure you want to log out of the Evaluator Portal?")) {
+              navigate("/");
+            }
+          }}
+        >
           <span>↪</span>
           Logout
         </button>
