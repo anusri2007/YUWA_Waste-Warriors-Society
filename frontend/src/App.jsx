@@ -15,6 +15,10 @@ import Competitions from "./admin/pages/Competitions";
 import AdminReports from "./admin/pages/AdminReports";
 import { AdminProvider } from "./admin/context/AdminContext";
 
+// Student and Coordinator Modules
+import StudentDashboard from "./student/StudentDashboard";
+import CoordinatorDashboard from "./coordinator";
+
 // Styles
 import "./evaluator/evaluator.css";
 import "./admin/admin.css";
@@ -38,6 +42,10 @@ function App() {
             <Route path="/admin/coordinators" element={<Coordinators />} />
             <Route path="/admin/competitions" element={<Competitions />} />
             <Route path="/admin/reports" element={<AdminReports />} />
+
+            {/* Student and Coordinator Routes */}
+            <Route path="/student/*" element={<StudentDashboard />} />
+            <Route path="/coordinator/*" element={<CoordinatorDashboard />} />
           </Routes>
         </BrowserRouter>
       </AdminProvider>

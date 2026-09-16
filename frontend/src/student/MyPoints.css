@@ -1,0 +1,231 @@
+.my-points-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* 3 Stat Cards */
+.points-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.point-stat-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow-gold:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.card-glow-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.card-glow-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.p-stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-stat-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.p-stat-icon-halo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.halo-gold { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.halo-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.halo-cyan { background: rgba(6, 182, 212, 0.15); color: #38bdf8; }
+
+.p-stat-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 4px 0 2px;
+}
+
+.p-stat-desc {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.p-mini-target-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fbbf24;
+  width: fit-content;
+}
+
+/* Chart Section */
+.points-chart-section {
+  padding: 28px;
+}
+
+.points-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.points-chart-title {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.points-chart-sub {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.chart-highlight-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.recharts-wrapper-box {
+  width: 100%;
+}
+
+/* Activities Stream */
+.points-activities-section {
+  padding: 28px;
+}
+
+.activities-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.act-title-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.act-title-tag h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.activities-timeline-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.act-timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 18px;
+  border-radius: 14px;
+  transition: all 0.2s;
+}
+
+.act-timeline-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateX(4px);
+}
+
+.act-icon-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.act-item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.act-item-title {
+  display: block;
+  font-size: 0.92rem;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.act-item-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+.act-item-pts-badge {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .points-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}

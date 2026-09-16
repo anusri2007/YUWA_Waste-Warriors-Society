@@ -1,0 +1,153 @@
+/* TaskDetails.css */
+
+.task-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.task-hero-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.task-hero-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-cat-pill {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.task-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-hero-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+  line-height: 1.25;
+}
+
+.task-hero-desc {
+  font-size: 0.95rem;
+  color: var(--coord-text-secondary);
+  line-height: 1.6;
+}
+
+.task-meta-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--coord-glass-border);
+}
+
+.task-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meta-lbl {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--coord-text-muted);
+}
+
+.meta-val {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+}
+
+.task-progress-box {
+  margin-top: 8px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+/* Criteria Checklist */
+.criteria-box {
+  padding: 24px;
+}
+
+.criteria-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.criteria-check-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.9rem;
+  color: var(--coord-text-secondary);
+  line-height: 1.5;
+}
+
+.criteria-check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 900;
+}
+
+/* Task Submissions */
+.task-submissions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.submissions-grid-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-task-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+

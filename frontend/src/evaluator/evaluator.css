@@ -1464,6 +1464,513 @@
   line-height: 1.4;
 }
 
+/* ========================================================================
+   YUWA EVALUATOR WORKSPACE - UNIFIED FOREST UI
+   ======================================================================== */
+
+:root {
+  --evaluator-bg: #071513;
+  --evaluator-surface: #0d211c;
+  --evaluator-surface-raised: #122a23;
+  --evaluator-surface-soft: #17352b;
+  --evaluator-border: rgba(167, 243, 208, 0.14);
+  --evaluator-border-strong: rgba(52, 211, 153, 0.38);
+  --evaluator-text: #f4fbf7;
+  --evaluator-muted: #9cb5a9;
+  --evaluator-dim: #708b7e;
+  --evaluator-primary: #34d399;
+  --evaluator-primary-deep: #168c62;
+  --evaluator-cyan: #22d3ee;
+  --evaluator-danger: #fb7185;
+  --evaluator-warning: #fbbf24;
+  --evaluator-radius: 16px;
+  --evaluator-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.evaluator-layout {
+  background: var(--evaluator-bg);
+  background-image: radial-gradient(circle at 86% 4%, rgba(16, 185, 129, 0.14), transparent 31%),
+    radial-gradient(circle at 12% 92%, rgba(6, 182, 212, 0.08), transparent 28%);
+  color: var(--evaluator-text);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+.sidebar {
+  width: 264px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  padding: 24px 16px;
+  background: #091c17;
+  border-right: 1px solid var(--evaluator-border);
+  box-shadow: 12px 0 36px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+}
+
+.brand {
+  padding: 4px 10px 28px;
+  border-bottom: 1px solid var(--evaluator-border);
+}
+
+.brand-logo {
+  background: linear-gradient(135deg, #174d3b, #0f766e);
+  border: 1px solid var(--evaluator-border-strong);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.18);
+}
+
+.brand h2 {
+  color: var(--evaluator-text);
+  letter-spacing: 0.03em;
+}
+
+.brand span {
+  color: var(--evaluator-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.sidebar-nav {
+  gap: 7px;
+  margin-top: 24px;
+}
+
+.nav-item {
+  width: 100%;
+  color: #a9c1b4;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 600;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #15382d;
+  border-color: rgba(52, 211, 153, 0.18);
+  color: #ecfff5;
+}
+
+.nav-item.active {
+  box-shadow: inset 3px 0 0 var(--evaluator-primary);
+}
+
+.sidebar-bottom {
+  gap: 7px;
+}
+
+.main-content {
+  min-height: 100vh;
+  margin-left: 264px;
+  background: transparent;
+}
+
+.header {
+  height: 88px;
+  padding: 0 40px;
+  background: rgba(9, 28, 23, 0.96);
+  border-bottom: 1px solid var(--evaluator-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.welcome-text,
+.page-eyebrow,
+.workspace-label {
+  color: var(--evaluator-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.header h1,
+.page-heading h1,
+.submissions-page-header h1,
+.review-page-header h1 {
+  color: var(--evaluator-text);
+  letter-spacing: -0.025em;
+}
+
+.header-actions,
+.profile {
+  color: var(--evaluator-text);
+}
+
+.profile span,
+.page-heading p:last-child,
+.submissions-page-header p,
+.submission-info span,
+.submission-team p,
+.section-subtext,
+.field-hint {
+  color: var(--evaluator-muted);
+}
+
+.notification-btn,
+.search-box,
+.filter-button,
+.secondary-btn {
+  background: var(--evaluator-surface-raised) !important;
+  border: 1px solid var(--evaluator-border) !important;
+  color: var(--evaluator-text);
+}
+
+.notification-btn:hover,
+.search-box:focus-within,
+.filter-button:hover,
+.secondary-btn:hover {
+  background: var(--evaluator-surface-soft) !important;
+  border-color: var(--evaluator-border-strong) !important;
+}
+
+.profile-avatar,
+.team-avatar {
+  background: #174d3b !important;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  color: #a7f3d0;
+}
+
+.notification-dropdown,
+.filter-popover {
+  background: #102a22;
+  border-color: var(--evaluator-border-strong);
+  box-shadow: var(--evaluator-shadow);
+}
+
+.notification-header,
+.filter-popover-header {
+  border-color: var(--evaluator-border);
+}
+
+.notification-header strong,
+.filter-popover-header h4,
+.filter-field label,
+.notification-body p {
+  color: var(--evaluator-text);
+}
+
+.dashboard-content,
+.submissions-page,
+.review-page,
+.analytics-page {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 34px 40px 64px;
+  background: transparent;
+}
+
+.stats-grid,
+.analytics-grid,
+.review-details-grid,
+.impact-grid,
+.criteria-summary-grid,
+.rubric-grid {
+  gap: 18px;
+}
+
+.stat-card,
+.submissions-section,
+.submission-row,
+.full-submission-card,
+.review-details-card,
+.analytics-card,
+.chart-card,
+.score-bracket-section,
+.evidence-card,
+.criteria-box,
+.rubric-item,
+.evaluation-entry-card {
+  background: var(--evaluator-surface) !important;
+  border: 1px solid var(--evaluator-border) !important;
+  border-radius: var(--evaluator-radius);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
+  color: var(--evaluator-text);
+}
+
+.stat-card:hover,
+.submission-row:hover,
+.full-submission-card:hover,
+.evidence-card:hover {
+  background: var(--evaluator-surface-raised) !important;
+  border-color: var(--evaluator-border-strong) !important;
+  box-shadow: var(--evaluator-shadow);
+  transform: translateY(-2px);
+}
+
+.stat-icon,
+.impact-box,
+.criteria-box,
+.review-grid div {
+  background: #15382d !important;
+  border: 1px solid rgba(52, 211, 153, 0.16);
+  color: var(--evaluator-text);
+}
+
+.stat-value,
+.stat-card h3,
+.section-heading h2,
+.submission-team h3,
+.submission-info strong,
+.review-details-card h2,
+.review-details-card h3,
+.card-header-line h2,
+.analytics-card h3,
+.criteria-box strong,
+.rubric-header strong {
+  color: var(--evaluator-text);
+}
+
+.stat-card p,
+.section-heading p,
+.submission-task span,
+.submission-time span,
+.review-details-grid span,
+.impact-metric-label,
+.criteria-box span,
+.rubric-desc {
+  color: var(--evaluator-muted);
+}
+
+.status-tabs,
+.submission-tabs {
+  border-color: var(--evaluator-border);
+}
+
+.status-tab,
+.submission-tabs button,
+.tab {
+  color: var(--evaluator-muted);
+}
+
+.status-tab.active,
+.submission-tabs button.active,
+.tab.active {
+  color: var(--evaluator-primary);
+  border-color: var(--evaluator-primary);
+}
+
+.tab span,
+.submission-tabs span,
+.tab-count,
+.filter-pill,
+.tag-pill,
+.timestamp-badge,
+.reason-pill {
+  background: #15382d;
+  color: #a7f3d0;
+  border: 1px solid rgba(52, 211, 153, 0.18);
+}
+
+.review-button,
+.review-btn,
+.submission-action,
+.primary-btn,
+.approve-btn,
+.apply-btn,
+.start-review-btn {
+  background: linear-gradient(135deg, #1b9a68, #0f765c) !important;
+  border: 1px solid rgba(167, 243, 208, 0.18);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 7px 18px rgba(16, 185, 129, 0.18);
+}
+
+.review-button:hover,
+.review-btn:hover,
+.submission-action:hover,
+.primary-btn:hover,
+.approve-btn:hover,
+.apply-btn:hover {
+  background: #28b77d !important;
+  transform: translateY(-1px);
+}
+
+.text-btn,
+.view-all-btn,
+.clear-all-link {
+  color: var(--evaluator-primary);
+}
+
+.empty-state,
+.no-submissions,
+.not-found-container {
+  background: var(--evaluator-surface) !important;
+  border: 1px dashed var(--evaluator-border-strong);
+  border-radius: var(--evaluator-radius);
+  color: var(--evaluator-muted);
+}
+
+.review-navigation-bar,
+.review-page-header {
+  margin-bottom: 24px;
+}
+
+.back-button,
+.reopen-btn,
+.reject-btn,
+.danger-confirm-btn,
+.modal-actions .secondary-btn {
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.back-button {
+  color: var(--evaluator-primary);
+  background: transparent;
+  border: 1px solid var(--evaluator-border);
+  padding: 9px 13px;
+}
+
+.back-button:hover {
+  background: var(--evaluator-surface-raised);
+  border-color: var(--evaluator-border-strong);
+}
+
+.review-details-grid > div,
+.impact-box,
+.criteria-box,
+.roster-chip,
+.rejection-details-box,
+.evaluator-feedback-box,
+.live-score-display {
+  background: #102a22;
+  border: 1px solid var(--evaluator-border);
+  border-radius: 12px;
+}
+
+.review-details-grid > div {
+  padding: 14px;
+}
+
+.evidence-card {
+  overflow: hidden;
+}
+
+.evidence-caption-box,
+.doc-info {
+  color: var(--evaluator-muted);
+}
+
+.evaluation-form input,
+.evaluation-form textarea,
+.modal-body input,
+.modal-body textarea,
+.modal-body select,
+.feedback-section textarea {
+  background: #091c17;
+  color: var(--evaluator-text);
+  border: 1px solid var(--evaluator-border);
+  border-radius: 10px;
+}
+
+.evaluation-form input:focus,
+.evaluation-form textarea:focus,
+.modal-body input:focus,
+.modal-body textarea:focus,
+.modal-body select:focus {
+  outline: none;
+  border-color: var(--evaluator-primary);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.12);
+}
+
+.modal-backdrop {
+  background: rgba(2, 13, 10, 0.82);
+}
+
+.modal-box {
+  background: #102a22;
+  border: 1px solid var(--evaluator-border-strong);
+  border-radius: 18px;
+  box-shadow: var(--evaluator-shadow);
+}
+
+.modal-header {
+  border-color: var(--evaluator-border);
+}
+
+.modal-header h2,
+.modal-explainer,
+.form-group label {
+  color: var(--evaluator-text);
+}
+
+.toast-notification {
+  background: #173d2f;
+  border: 1px solid var(--evaluator-border-strong);
+  color: var(--evaluator-text);
+  box-shadow: var(--evaluator-shadow);
+}
+
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 224px;
+  }
+
+  .main-content {
+    margin-left: 224px;
+  }
+
+  .dashboard-content,
+  .submissions-page,
+  .review-page,
+  .analytics-page {
+    padding: 28px 24px 52px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    position: relative;
+    padding: 18px 14px;
+  }
+
+  .brand {
+    padding-bottom: 18px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .nav-item {
+    flex: 1 1 140px;
+  }
+
+  .sidebar-bottom {
+    flex-direction: row;
+    margin-top: 14px;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .header {
+    height: auto;
+    min-height: 78px;
+    padding: 16px 20px;
+  }
+
+  .profile {
+    display: none;
+  }
+
+  .dashboard-content,
+  .submissions-page,
+  .review-page,
+  .analytics-page {
+    padding: 24px 16px 42px;
+  }
+}
+
 /* =========================================================
    BUTTONS & GLOBAL QUICK ACTIONS
    ========================================================= */
@@ -3028,4 +3535,4 @@
   .analytics-page {
     padding: 20px 16px 40px;
   }
-}
+}

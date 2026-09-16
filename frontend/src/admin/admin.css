@@ -1098,6 +1098,392 @@
   font-size: 13px;
 }
 
+/* ========================================================================
+   YUWA ADMIN PORTAL - UNIFIED FOREST UI
+   ======================================================================== */
+
+:root {
+  --admin-bg: #071513;
+  --admin-surface: #0d211c;
+  --admin-surface-raised: #122a23;
+  --admin-surface-soft: #17352b;
+  --admin-border: rgba(167, 243, 208, 0.14);
+  --admin-border-strong: rgba(52, 211, 153, 0.38);
+  --admin-text: #f4fbf7;
+  --admin-muted: #9cb5a9;
+  --admin-primary: #34d399;
+  --admin-primary-deep: #168c62;
+  --admin-danger: #fb7185;
+  --admin-warning: #fbbf24;
+  --admin-radius: 16px;
+  --admin-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.admin-layout {
+  background: var(--admin-bg);
+  background-image: radial-gradient(circle at 88% 2%, rgba(16, 185, 129, 0.14), transparent 30%),
+    radial-gradient(circle at 8% 90%, rgba(6, 182, 212, 0.08), transparent 28%);
+  color: var(--admin-text);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+.admin-sidebar {
+  width: 264px;
+  padding: 24px 16px;
+  background: #091c17;
+  border-right: 1px solid var(--admin-border);
+  box-shadow: 12px 0 36px rgba(0, 0, 0, 0.2);
+}
+
+.admin-brand {
+  padding: 4px 10px 28px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-brand-logo {
+  background: linear-gradient(135deg, #174d3b, #0f766e);
+  border: 1px solid var(--admin-border-strong);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.18);
+}
+
+.admin-brand h2 {
+  color: var(--admin-text);
+  letter-spacing: 0.03em;
+}
+
+.admin-brand span {
+  color: var(--admin-primary);
+  letter-spacing: 0.1em;
+}
+
+.admin-sidebar-nav {
+  gap: 7px;
+  margin-top: 24px;
+}
+
+.admin-nav-item {
+  color: #a9c1b4;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 600;
+}
+
+.admin-nav-item:hover,
+.admin-nav-item.active {
+  background: #15382d;
+  border-color: rgba(52, 211, 153, 0.18);
+  color: #ecfff5;
+}
+
+.admin-nav-item.active {
+  box-shadow: inset 3px 0 0 var(--admin-primary);
+}
+
+.admin-nav-badge {
+  background: #e56b79;
+  box-shadow: 0 0 0 3px rgba(229, 107, 121, 0.12);
+}
+
+.admin-main {
+  background: transparent;
+}
+
+.admin-header {
+  height: 88px;
+  padding: 0 40px;
+  background: rgba(9, 28, 23, 0.96);
+  border-bottom: 1px solid var(--admin-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.admin-welcome-text,
+.admin-workspace-label {
+  color: var(--admin-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.admin-header h1,
+.admin-page-header h1,
+.admin-section-header h2,
+.admin-section-header h3,
+.admin-stat-value,
+.admin-comp-card h3,
+.quick-action-info strong,
+.admin-table td,
+.admin-profile strong {
+  color: var(--admin-text);
+}
+
+.admin-profile span,
+.admin-page-header p,
+.admin-section-header p,
+.admin-stat-content p,
+.admin-table th,
+.admin-comp-desc,
+.quick-action-info span {
+  color: var(--admin-muted);
+}
+
+.admin-notification-btn,
+.admin-search-box,
+.admin-filter-select,
+.admin-btn-secondary {
+  background: var(--admin-surface-raised) !important;
+  border-color: var(--admin-border) !important;
+  color: var(--admin-text);
+}
+
+.admin-notification-btn:hover,
+.admin-search-box:focus-within,
+.admin-filter-select:focus,
+.admin-btn-secondary:hover {
+  background: var(--admin-surface-soft) !important;
+  border-color: var(--admin-border-strong) !important;
+}
+
+.admin-avatar,
+.admin-stat-icon,
+.quick-action-icon {
+  background: #174d3b;
+  border: 1px solid rgba(52, 211, 153, 0.24);
+  color: #a7f3d0;
+}
+
+.admin-notification-dropdown,
+.admin-modal,
+.admin-section-card,
+.admin-stat-card,
+.quick-action-card,
+.admin-comp-card {
+  background: var(--admin-surface) !important;
+  border: 1px solid var(--admin-border) !important;
+  border-radius: var(--admin-radius);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
+  color: var(--admin-text);
+}
+
+.admin-section-card,
+.admin-stat-card,
+.quick-action-card,
+.admin-comp-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-stat-card:hover,
+.quick-action-card:hover,
+.admin-comp-card:hover {
+  background: var(--admin-surface-raised) !important;
+  border-color: var(--admin-border-strong) !important;
+  box-shadow: var(--admin-shadow);
+  transform: translateY(-2px);
+}
+
+.admin-section-header,
+.admin-modal-header,
+.admin-dropdown-header,
+.admin-modal-footer,
+.admin-comp-actions {
+  border-color: var(--admin-border);
+}
+
+.admin-table th {
+  background: #102a22;
+  border-color: var(--admin-border);
+}
+
+.admin-table td {
+  border-color: var(--admin-border);
+}
+
+.admin-table tr:hover td {
+  background: #15382d;
+}
+
+.admin-status-badge,
+.admin-nav-badge {
+  border-radius: 999px;
+}
+
+.badge-success {
+  background: rgba(52, 211, 153, 0.16);
+  color: #86efac;
+}
+
+.badge-warning {
+  background: rgba(251, 191, 36, 0.16);
+  color: #fcd34d;
+}
+
+.badge-danger {
+  background: rgba(251, 113, 133, 0.16);
+  color: #fda4af;
+}
+
+.badge-neutral {
+  background: #17352b;
+  color: #a7f3d0;
+}
+
+.admin-btn,
+.admin-btn-primary,
+.admin-btn-secondary,
+.admin-btn-danger {
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.admin-btn-primary {
+  background: linear-gradient(135deg, #1b9a68, #0f765c);
+  border: 1px solid rgba(167, 243, 208, 0.18);
+  box-shadow: 0 7px 18px rgba(16, 185, 129, 0.18);
+}
+
+.admin-btn-primary:hover {
+  background: #28b77d;
+  transform: translateY(-1px);
+}
+
+.admin-btn-danger {
+  background: rgba(251, 113, 133, 0.12);
+  border-color: rgba(251, 113, 133, 0.32);
+  color: #fda4af;
+}
+
+.admin-btn-danger:hover {
+  background: rgba(251, 113, 133, 0.22);
+  border-color: #fb7185;
+}
+
+.admin-comp-meta,
+.notif-item,
+.admin-form-group input,
+.admin-form-group select,
+.admin-form-group textarea,
+.admin-modal-footer {
+  background: #102a22;
+  border-color: var(--admin-border);
+  color: var(--admin-text);
+}
+
+.admin-comp-meta strong,
+.admin-modal-header h3,
+.admin-form-group label,
+.notif-info strong {
+  color: var(--admin-text);
+}
+
+.admin-comp-meta span,
+.notif-info span,
+.admin-dropdown-header span,
+.admin-form-group label + span {
+  color: var(--admin-muted);
+}
+
+.admin-form-group input:focus,
+.admin-form-group select:focus,
+.admin-form-group textarea:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.12);
+}
+
+.admin-modal-backdrop {
+  background: rgba(2, 13, 10, 0.82);
+}
+
+.admin-modal-close {
+  color: var(--admin-muted);
+}
+
+.admin-modal-footer {
+  background: #091c17;
+}
+
+.admin-progress-track {
+  background: #17352b;
+}
+
+.admin-progress-fill {
+  background: linear-gradient(90deg, #168c62, #34d399);
+}
+
+.admin-toast {
+  background: #173d2f;
+  border: 1px solid var(--admin-border-strong);
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-empty-state {
+  color: var(--admin-muted);
+}
+
+.admin-empty-state h3 {
+  color: var(--admin-text);
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    width: 224px;
+  }
+
+  .admin-header {
+    padding: 0 24px;
+  }
+
+  .admin-content {
+    padding: 28px 24px 52px;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    padding: 18px 14px;
+  }
+
+  .admin-sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .admin-nav-item {
+    flex: 1 1 140px;
+  }
+
+  .admin-sidebar-bottom {
+    flex-direction: row;
+    margin-top: 14px;
+  }
+
+  .admin-header {
+    height: auto;
+    min-height: 78px;
+    padding: 16px 20px;
+  }
+
+  .admin-profile {
+    display: none;
+  }
+
+  .admin-content {
+    padding: 24px 16px 42px;
+  }
+
+  .admin-notification-dropdown {
+    position: fixed;
+    top: 76px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}
+
 /* =========================================================
    RESPONSIVE ADJUSTMENTS
    ========================================================= */
