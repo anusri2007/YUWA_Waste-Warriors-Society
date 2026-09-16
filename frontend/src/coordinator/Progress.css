@@ -1,0 +1,267 @@
+/* Progress.css */
+
+.progress-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comp-progress-banner {
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.banner-left-info {
+  max-width: 600px;
+}
+
+.banner-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #34d399;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.banner-left-info h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+  margin-bottom: 8px;
+}
+
+.banner-left-info p {
+  font-size: 0.92rem;
+  color: var(--coord-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.banner-stats-mini-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mini-num {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+  line-height: 1.1;
+}
+
+.mini-lbl {
+  font-size: 0.75rem;
+  color: var(--coord-text-muted);
+}
+
+.mini-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--coord-glass-border);
+}
+
+.impact-gauges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.impact-gauge-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gauge-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gauge-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-icon-box.emerald {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.gauge-icon-box.cyan {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+.gauge-icon-box.violet {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+.gauge-icon-box.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.gauge-percent-tag {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+}
+
+.gauge-val {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--coord-text-primary);
+  line-height: 1.1;
+}
+
+.gauge-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--coord-text-secondary);
+  margin-top: 2px;
+}
+
+.gauge-target {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--coord-text-muted);
+}
+
+.gauge-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.gauge-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.gauge-bar-fill.emerald {
+  background: #10b981;
+}
+.gauge-bar-fill.cyan {
+  background: #0ea5e9;
+}
+.gauge-bar-fill.violet {
+  background: #8b5cf6;
+}
+.gauge-bar-fill.amber {
+  background: #f59e0b;
+}
+
+/* Milestones */
+.milestones-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.milestones-list-card {
+  padding: 10px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.milestone-row-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--coord-glass-border);
+}
+
+.milestone-row-item:last-child {
+  border-bottom: none;
+}
+
+.ms-info-col {
+  flex: 1;
+}
+
+.ms-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.ms-header h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+}
+
+.ms-meta {
+  font-size: 0.8rem;
+  color: var(--coord-text-muted);
+}
+
+.ms-progress-col {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-prog-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--coord-text-secondary);
+}
+
+.ms-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.ms-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0ea5e9, #10b981);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+@media (max-width: 860px) {
+  .comp-progress-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .milestone-row-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ms-progress-col {
+    width: 100%;
+  }
+}
+

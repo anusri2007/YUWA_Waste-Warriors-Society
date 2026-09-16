@@ -1,0 +1,139 @@
+/* Colleges.css */
+
+.colleges-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.colleges-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.college-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.colleges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.college-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.college-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+.college-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.college-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.college-rank-tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--coord-glass-border);
+  color: var(--coord-text-secondary);
+}
+
+.college-rank-tag.rank-1 {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+}
+.college-rank-tag.rank-2 {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: #0f172a;
+}
+.college-rank-tag.rank-3 {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+}
+
+.college-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.college-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+  line-height: 1.35;
+}
+
+.college-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+}
+
+.college-coord-lead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--coord-text-muted);
+  margin-top: 4px;
+}
+
+.college-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--coord-glass-border);
+  text-align: center;
+}
+
+.c-stat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.c-stat-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+}
+
+.c-stat-lbl {
+  font-size: 0.72rem;
+  color: var(--coord-text-muted);
+  text-transform: uppercase;
+}
+

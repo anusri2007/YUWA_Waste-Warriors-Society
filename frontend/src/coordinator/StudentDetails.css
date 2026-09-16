@@ -1,0 +1,455 @@
+/* StudentDetails.css */
+
+.student-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.back-nav-bar {
+  display: flex;
+  align-items: center;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--coord-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--coord-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--coord-emerald);
+  transform: translateX(-4px);
+}
+
+/* Hero Dossier Card */
+.student-hero-card {
+  padding: 28px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.student-hero-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.student-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.student-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.student-hero-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.student-rank-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--coord-glass-border);
+  color: #fff;
+}
+
+.student-rank-badge.rank-1 {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+}
+.student-rank-badge.rank-2 {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: #0f172a;
+}
+.student-rank-badge.rank-3 {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+}
+
+.student-main-info {
+  flex: 1;
+}
+
+.student-name-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.student-name-row h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+}
+
+.student-roll-id {
+  font-size: 0.85rem;
+  color: var(--coord-text-muted);
+  margin-bottom: 14px;
+}
+
+.student-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--coord-text-secondary);
+}
+
+.contact-item svg {
+  color: var(--coord-emerald);
+}
+
+.student-points-badge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 26px;
+  border-radius: 18px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+  min-width: 140px;
+}
+
+.points-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--coord-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.points-value {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #34d399;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.points-sub {
+  font-size: 0.72rem;
+  color: var(--coord-text-muted);
+}
+
+/* Metrics Row */
+.student-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.metric-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+}
+
+.metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-icon.emerald {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.metric-icon.cyan {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.metric-icon.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.metric-icon.violet {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.metric-number {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+  line-height: 1.1;
+}
+
+.metric-label {
+  font-size: 0.78rem;
+  color: var(--coord-text-secondary);
+}
+
+/* Tab Header */
+.student-tabs-header {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--coord-glass-border);
+  padding-bottom: 4px;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: var(--coord-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--coord-radius-md) var(--coord-radius-md) 0 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--coord-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+  border-bottom: 2px solid #34d399;
+}
+
+/* Submissions List */
+.submissions-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.empty-sub-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  gap: 10px;
+}
+
+.empty-sub-box h4 {
+  font-size: 1.1rem;
+  color: var(--coord-text-primary);
+}
+
+.empty-sub-box p {
+  color: var(--coord-text-secondary);
+  font-size: 0.88rem;
+}
+
+/* Achievements Grid */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+}
+
+.ach-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ach-icon-circle.emerald {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+
+.ach-icon-circle.amber {
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.ach-icon-circle.violet {
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #a78bfa;
+}
+
+.ach-icon-circle.cyan {
+  background: rgba(14, 165, 233, 0.18);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+}
+
+.ach-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+  margin-bottom: 4px;
+}
+
+.ach-details p {
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.ach-date {
+  font-size: 0.72rem;
+  color: var(--coord-text-muted);
+}
+
+/* Category Badge */
+.cat-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--coord-text-secondary);
+}
+
+/* Student Team Banner */
+.student-team-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+}
+
+.team-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.team-avatar-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-banner-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.team-banner-left h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+  margin-bottom: 2px;
+}
+
+.team-banner-left p {
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+}
+
+/* Not Found Box */
+.not-found-box {
+  text-align: center;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 768px) {
+  .student-hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .student-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .student-points-badge-box {
+    width: 100%;
+  }
+  .student-team-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
