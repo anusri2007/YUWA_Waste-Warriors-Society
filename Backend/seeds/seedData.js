@@ -51,52 +51,14 @@ const seedDatabase = async () => {
     });
     await Counter.create({ _id: "college", seq: 1 });
 
-    // 2. Create Users (1 admin, 1 coordinator, 1 evaluator, 2 students)
-    console.log("Seeding Users...");
+    // 2. Create Users (ONLY Admin is seeded)
+    console.log("Seeding Admin User...");
     const admin = await User.create({
       name: "YUWA Admin",
       email: "admin@yuwa-ecolympics.org",
       password: defaultPassword,
       role: ROLES.ADMIN,
       status: USER_STATUS.ACTIVE
-    });
-
-    const coordinator = await User.create({
-      name: "Prof. Rajesh Sharma",
-      email: "coordinator@yuwa-ecolympics.org",
-      password: defaultPassword,
-      role: ROLES.COORDINATOR,
-      status: USER_STATUS.ACTIVE,
-      collegeId: college._id,
-      phoneNumber: "+919876543210"
-    });
-
-    const evaluator = await User.create({
-      name: "Dr. Ananya Verma",
-      email: "evaluator@yuwa-ecolympics.org",
-      password: defaultPassword,
-      role: ROLES.EVALUATOR,
-      status: USER_STATUS.ACTIVE
-    });
-
-    const student1 = await User.create({
-      name: "Aarav Patel",
-      email: "aarav.student@yuwa-ecolympics.org",
-      password: defaultPassword,
-      role: ROLES.STUDENT,
-      status: USER_STATUS.ACTIVE,
-      collegeId: college._id,
-      phoneNumber: "+919123456780"
-    });
-
-    const student2 = await User.create({
-      name: "Diya Sengupta",
-      email: "diya.student@yuwa-ecolympics.org",
-      password: defaultPassword,
-      role: ROLES.STUDENT,
-      status: USER_STATUS.ACTIVE,
-      collegeId: college._id,
-      phoneNumber: "+919123456781"
     });
 
     // 3. Create Competition
@@ -213,31 +175,15 @@ const seedDatabase = async () => {
       createdBy: admin._id
     });
 
-    // 6. Create Team
-    console.log("Seeding Team...");
-    const team = await Team.create({
-      teamId: "TEAM-001",
-      teamName: "EcoWarriors Green League",
-      competitionId: competition._id,
-      collegeId: college._id,
-      coordinatorId: coordinator._id,
-      members: [student1._id, student2._id],
-      status: "ACTIVE"
-    });
-    await Counter.create({ _id: "team", seq: 1 });
-
     console.log("\n========================================================");
     console.log("SEEDING COMPLETED SUCCESSFULLY!");
     console.log("========================================================");
-    console.log("Credentials (Password for all accounts: Password123!):");
-    console.log(`- Admin:       ${admin.email}`);
-    console.log(`- Coordinator: ${coordinator.email} (College: ${college.name})`);
-    console.log(`- Evaluator:   ${evaluator.email}`);
-    console.log(`- Student 1:   ${student1.email} (Team: ${team.teamName})`);
-    console.log(`- Student 2:   ${student2.email} (Team: ${team.teamName})`);
+    console.log("Seeded Admin Credentials (Password: Password123!):");
+    console.log(`- Admin Email: ${admin.email}`);
     console.log(`- College:     ${college.name} (${college.collegeId})`);
     console.log(`- Competition: ${competition.name} (${competition.year})`);
     console.log(`- Tasks:       1. ${task1.title}, 2. ${task2.title}`);
+    console.log("Note: Coordinator, Evaluator & Student register via signup and undergo approval.");
     console.log("========================================================\n");
 
     process.exit(0);

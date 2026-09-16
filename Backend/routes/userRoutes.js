@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getUsers,
+  getPendingUsers,
   getUserById,
   updateUser,
   updateUserStatus,
@@ -18,6 +19,7 @@ const router = express.Router();
 router.use(authMiddleware);
 router.use(roleMiddleware(ROLES.ADMIN));
 
+router.get("/pending", getPendingUsers);
 router.get("/", getUsers);
 router.get("/:id", validateObjectId("id"), getUserById);
 router.put("/:id", validateObjectId("id"), updateUser);

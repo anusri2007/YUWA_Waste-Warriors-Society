@@ -101,6 +101,48 @@ const updateUser = async (req, res) => {
   }
 };
 
+// @desc    Get pending users awaiting approval (Admin only)
+// @route   GET /api/users/pending
+// @access  Admin only
+const getPendingUsers = async (req, res) => {
+  try {
+    const { role, search } = req.query;
+    const { page, limit, skip } = getPaginationParams(req.query);
+
+    const filter = {
+      status: USER_STATUS.PENDING
+    };
+
+    if (role && Object.values(ROLES).includes(role.toUpperCase())) {
+      filter.role = role.toUpperCase();
+    }
+
+    if (search) {
+      filter.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } }
+      ];
+    }
+
+    const total = await User.countDocuments(filter);
+    const users = await User.find(filter)
+      .select("-password")
+      .populate("collegeId", "collegeId name location")
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    return sendPaginated(
+      res,
+      "Pending users retrieved successfully",
+      users,
+      getPaginationMeta(total, page, limit)
+    );
+  } catch (error) {
+    return sendError(res, error.message || "Failed to retrieve pending users", 500);
+  }
+};
+
 // @desc    Update user status (PENDING / ACTIVE / BLOCKED)
 // @route   PUT /api/users/:id/status
 // @access  Admin only
@@ -119,6 +161,15 @@ const updateUserStatus = async (req, res) => {
     const user = await User.findById(req.params.id);
     if (!user) {
       return sendError(res, "User not found", 404);
+    }
+
+    // Protect against locking out self admin account
+    if (
+      user.role === ROLES.ADMIN &&
+      status.toUpperCase() !== USER_STATUS.ACTIVE &&
+      user._id.toString() === req.user.userId
+    ) {
+      return sendError(res, "Cannot change status of your own admin account", 400);
     }
 
     user.status = status.toUpperCase();
@@ -221,6 +272,7 @@ const assignCollege = async (req, res) => {
 
 module.exports = {
   getUsers,
+  getPendingUsers,
   getUserById,
   updateUser,
   updateUserStatus,
