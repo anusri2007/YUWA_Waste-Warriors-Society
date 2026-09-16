@@ -40,7 +40,7 @@ const submissions = [
   },
 ];
 
-function EvaluatorDashboard() {
+function EvaluatorDashboard({ onNavigate }) {
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedSubmission, setSelectedSubmission] = useState(null);
 
@@ -74,13 +74,24 @@ function EvaluatorDashboard() {
 
   const visibleSubmissions = getVisibleSubmissions();
 
+  const changeTab = (tab) => {
+    setActiveTab(tab);
+    setSelectedSubmission(null);
+  };
+
   return (
     <div className="evaluator-layout">
 
-      <Sidebar />
+      {/* SIDEBAR */}
+      <Sidebar
+        activePage="dashboard"
+        onNavigate={onNavigate}
+      />
 
+      {/* MAIN CONTENT */}
       <main className="main-content">
 
+        {/* HEADER */}
         <Header />
 
         <section className="dashboard-content">
@@ -88,6 +99,8 @@ function EvaluatorDashboard() {
           {/* PAGE INTRO */}
           <div className="page-intro">
             <div>
+              <span className="page-label">Evaluator Portal</span>
+
               <h2>Review student submissions</h2>
 
               <p>
@@ -97,17 +110,14 @@ function EvaluatorDashboard() {
             </div>
           </div>
 
-          {/* TOP TABS */}
+          {/* STATUS TABS */}
           <div className="status-tabs">
 
             <button
               className={`status-tab ${
                 activeTab === "overview" ? "active" : ""
               }`}
-              onClick={() => {
-                setActiveTab("overview");
-                setSelectedSubmission(null);
-              }}
+              onClick={() => changeTab("overview")}
             >
               Overview
             </button>
@@ -116,10 +126,7 @@ function EvaluatorDashboard() {
               className={`status-tab ${
                 activeTab === "pending" ? "active" : ""
               }`}
-              onClick={() => {
-                setActiveTab("pending");
-                setSelectedSubmission(null);
-              }}
+              onClick={() => changeTab("pending")}
             >
               Pending
 
@@ -132,10 +139,7 @@ function EvaluatorDashboard() {
               className={`status-tab ${
                 activeTab === "evaluated" ? "active" : ""
               }`}
-              onClick={() => {
-                setActiveTab("evaluated");
-                setSelectedSubmission(null);
-              }}
+              onClick={() => changeTab("evaluated")}
             >
               Evaluated
 
@@ -148,10 +152,7 @@ function EvaluatorDashboard() {
               className={`status-tab ${
                 activeTab === "rejected" ? "active" : ""
               }`}
-              onClick={() => {
-                setActiveTab("rejected");
-                setSelectedSubmission(null);
-              }}
+              onClick={() => changeTab("rejected")}
             >
               Rejected
 
@@ -195,7 +196,7 @@ function EvaluatorDashboard() {
 
           </div>
 
-          {/* SUBMISSIONS */}
+          {/* SUBMISSIONS SECTION */}
           <section className="submissions-section">
 
             <div className="section-heading">
@@ -217,7 +218,7 @@ function EvaluatorDashboard() {
               {activeTab !== "pending" && (
                 <button
                   className="view-all-btn"
-                  onClick={() => setActiveTab("pending")}
+                  onClick={() => changeTab("pending")}
                 >
                   View pending →
                 </button>
@@ -225,21 +226,34 @@ function EvaluatorDashboard() {
 
             </div>
 
+            {/* SUBMISSION LIST */}
             <div className="submission-list">
 
-              {visibleSubmissions.map((submission) => (
-                <SubmissionCard
-                  key={submission.id}
-                  submission={submission}
-                  onReview={setSelectedSubmission}
-                />
-              ))}
+              {visibleSubmissions.length > 0 ? (
+                visibleSubmissions.map((submission) => (
+                  <SubmissionCard
+                    key={submission.id}
+                    submission={submission}
+                    onReview={setSelectedSubmission}
+                  />
+                ))
+              ) : (
+                <div className="empty-state">
+                  <div className="empty-icon">📭</div>
+
+                  <h3>No submissions found</h3>
+
+                  <p>
+                    There are no submissions in this category.
+                  </p>
+                </div>
+              )}
 
             </div>
 
           </section>
 
-          {/* REVIEW PREVIEW */}
+          {/* QUICK REVIEW PREVIEW */}
           {selectedSubmission && (
             <div className="review-preview">
 
@@ -266,6 +280,7 @@ function EvaluatorDashboard() {
 
                 <div>
                   <span>College</span>
+
                   <strong>
                     {selectedSubmission.college}
                   </strong>
@@ -273,21 +288,34 @@ function EvaluatorDashboard() {
 
                 <div>
                   <span>Task</span>
+
                   <strong>
                     {selectedSubmission.task}
                   </strong>
                 </div>
 
                 <div>
-                  <span>Status</span>
+                  <span>Submitted</span>
+
                   <strong>
+                    {selectedSubmission.time}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Status</span>
+
+                  <strong className={`status-${selectedSubmission.status}`}>
                     {selectedSubmission.status}
                   </strong>
                 </div>
 
               </div>
 
-              <button className="start-review-btn">
+              <button
+                className="start-review-btn"
+                onClick={() => onNavigate("submissions")}
+              >
                 Open Full Review →
               </button>
 
