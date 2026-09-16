@@ -1,26 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  background: #f4f8f5;
-  color: #17251c;
-}
-
-button,
-input,
-textarea,
-select {
-  font-family: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
