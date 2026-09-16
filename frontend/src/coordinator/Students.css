@@ -1,0 +1,331 @@
+/* Students.css */
+
+.students-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.students-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.student-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.stat-pill-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-pill-icon.emerald {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+
+.stat-pill-icon.cyan {
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  color: #38bdf8;
+}
+
+.stat-pill-icon.violet {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #a78bfa;
+}
+
+.stat-pill-icon.amber {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.stat-pill-num {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+  line-height: 1.1;
+}
+
+.stat-pill-lbl {
+  font-size: 0.8rem;
+  color: var(--coord-text-secondary);
+}
+
+/* Controls Bar */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+}
+
+.search-box-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.search-box-wrap .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--coord-text-muted);
+  pointer-events: none;
+}
+
+.search-box-wrap .search-input {
+  padding-left: 42px;
+  width: 100%;
+}
+
+.filter-group-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrap .select-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--coord-text-muted);
+  pointer-events: none;
+}
+
+.select-wrap .coord-select {
+  padding-left: 36px;
+  min-width: 160px;
+}
+
+/* View Mode Toggle */
+.view-mode-toggle {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--coord-glass-border);
+  border-radius: var(--coord-radius-md);
+  padding: 3px;
+}
+
+.view-btn {
+  background: transparent;
+  border: none;
+  color: var(--coord-text-muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.view-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+/* Students Grid */
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+
+/* Students Table */
+.table-responsive {
+  overflow-x: auto;
+  padding: 0;
+  border-radius: var(--coord-radius-lg);
+}
+
+.table-student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--coord-glass-border);
+}
+
+.table-name {
+  display: block;
+  font-weight: 600;
+  color: var(--coord-text-primary);
+  font-size: 0.92rem;
+}
+
+.table-sub {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--coord-text-muted);
+}
+
+.table-college {
+  font-size: 0.85rem;
+  color: var(--coord-text-secondary);
+  max-width: 180px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-team-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.28);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.table-rank-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--coord-glass-border);
+  color: var(--coord-text-secondary);
+}
+
+.table-rank-tag.rank-1 {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  border-color: #f59e0b;
+}
+
+.table-rank-tag.rank-2 {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.table-rank-tag.rank-3 {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  border-color: #d97706;
+}
+
+/* Empty State */
+.empty-state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  gap: 14px;
+}
+
+.empty-icon {
+  color: var(--coord-text-muted);
+  opacity: 0.5;
+}
+
+.empty-state-box h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+}
+
+.empty-state-box p {
+  color: var(--coord-text-secondary);
+  font-size: 0.92rem;
+  max-width: 400px;
+}
+
+/* Pagination Bar */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: var(--coord-radius-md);
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--coord-glass-border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-info {
+  font-size: 0.85rem;
+  color: var(--coord-text-secondary);
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.page-num-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--coord-glass-border);
+  color: var(--coord-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.page-num-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--coord-text-primary);
+}
+
+.page-num-btn.active {
+  background: var(--coord-emerald);
+  color: #0f172a;
+  border-color: var(--coord-emerald);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+

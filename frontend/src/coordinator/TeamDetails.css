@@ -1,0 +1,208 @@
+/* TeamDetails.css */
+
+.team-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.team-hero-card {
+  padding: 28px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-hero-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.team-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.team-badge-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.team-main-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2));
+  border: 2px solid rgba(14, 165, 233, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.team-rank-pill {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--coord-glass-border);
+  color: #fff;
+}
+
+.team-rank-pill.rank-1 {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+}
+.team-rank-pill.rank-2 {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: #0f172a;
+}
+.team-rank-pill.rank-3 {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+}
+
+.team-main-info {
+  flex: 1;
+}
+
+.team-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.team-title-row h2 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--coord-text-primary);
+}
+
+.team-code-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #38bdf8;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.team-college-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--coord-text-secondary);
+  margin-bottom: 14px;
+}
+
+.team-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+  background: rgba(15, 23, 42, 0.5);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--coord-glass-border);
+}
+
+.meta-pill svg {
+  color: var(--coord-emerald);
+}
+
+.team-points-box {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px;
+  border-radius: 18px;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  min-width: 170px;
+}
+
+.team-pts-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--coord-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-pts-val {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #38bdf8;
+  line-height: 1.1;
+  margin: 4px 0 10px 0;
+}
+
+.team-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.team-progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--coord-text-muted);
+}
+
+.team-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.team-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0ea5e9, #10b981);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.team-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .team-hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .team-points-box {
+    width: 100%;
+  }
+}
+

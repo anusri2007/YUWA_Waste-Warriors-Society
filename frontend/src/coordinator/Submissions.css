@@ -1,0 +1,105 @@
+/* Submissions.css */
+
+.submissions-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.submission-tabs-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.submission-status-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 4px;
+  border-radius: var(--coord-radius-md);
+  border: 1px solid var(--coord-glass-border);
+  flex-wrap: wrap;
+}
+
+.sub-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--coord-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--coord-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sub-tab-btn:hover {
+  color: var(--coord-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sub-tab-btn.active.pending {
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.sub-tab-btn.active.approved {
+  background: #10b981;
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.sub-tab-btn.active.rejected {
+  background: #ef4444;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+.tab-pill {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+}
+
+.sub-tab-btn.active .tab-pill {
+  background: rgba(15, 23, 42, 0.25);
+  color: inherit;
+}
+
+.submissions-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-instruction {
+  font-size: 0.88rem;
+  color: var(--coord-text-secondary);
+  line-height: 1.5;
+}
+
+.modal-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+

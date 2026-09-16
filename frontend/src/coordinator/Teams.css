@@ -1,0 +1,27 @@
+/* Teams.css */
+
+.teams-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.teams-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.team-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+

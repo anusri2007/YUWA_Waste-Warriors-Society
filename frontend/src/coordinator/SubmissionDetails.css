@@ -1,0 +1,277 @@
+/* SubmissionDetails.css */
+
+.submission-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.evidence-layout-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.evidence-proofs-col,
+.evidence-reviewer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Proof Viewer */
+.proof-viewer-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.proof-viewer-main {
+  position: relative;
+  border-radius: var(--coord-radius-lg);
+  overflow: hidden;
+  max-height: 420px;
+  background: #000;
+}
+
+.proof-main-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.geotag-overlay-pill {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--coord-glass-border);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.proof-thumbnails-row {
+  display: flex;
+  gap: 10px;
+}
+
+.thumb-btn {
+  width: 70px;
+  height: 52px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-btn.active {
+  border-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Reflection Card */
+.student-reflection-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reflection-text {
+  font-size: 0.95rem;
+  color: var(--coord-text-primary);
+  line-height: 1.6;
+  font-style: italic;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 16px;
+  border-radius: var(--coord-radius-md);
+  border-left: 3px solid #38bdf8;
+}
+
+.reflection-meta-grid {
+  display: flex;
+  gap: 20px;
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+}
+
+.ref-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Student Summary Card */
+.student-summary-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sub-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-id-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--coord-text-muted);
+  text-transform: uppercase;
+}
+
+.student-profile-mini {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.student-mini-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.student-mini-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+}
+
+.student-mini-sub {
+  font-size: 0.8rem;
+  color: var(--coord-text-muted);
+}
+
+.student-affiliation-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aff-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--coord-text-secondary);
+}
+
+.aff-pill svg {
+  color: #38bdf8;
+}
+
+/* Mission Context */
+.mission-context-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.context-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--coord-text-muted);
+}
+
+.mission-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--coord-text-primary);
+}
+
+.mission-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.points-avail {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #34d399;
+}
+
+/* Decision Panel */
+.decision-panel-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.points-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.points-field {
+  padding-right: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #34d399;
+}
+
+.pts-suffix {
+  position: absolute;
+  right: 14px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--coord-text-muted);
+}
+
+.decision-buttons-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.approve-action-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: 0.95rem;
+}
+
+.request-changes-btn,
+.reject-action-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
+}
+
+@media (max-width: 1024px) {
+  .evidence-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
