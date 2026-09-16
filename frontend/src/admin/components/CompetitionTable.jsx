@@ -88,3 +88,4 @@ function CompetitionTable({ competitions, onEdit, onDelete, onViewDetails }) {
 }
 
 export default CompetitionTable;
+
