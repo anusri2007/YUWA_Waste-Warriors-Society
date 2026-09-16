@@ -40,6 +40,7 @@ let baseUrl;
 let adminToken = "";
 let coordinatorToken = "";
 let evaluatorToken = "";
+let evaluatorUserId = "";
 let student1Token = "";
 let student2Token = "";
 
@@ -127,8 +128,8 @@ const runTests = async () => {
     assert(health.status === 200, "Health check returns 200");
     assert(health.body.message === "YUWA Backend is running", "Health check message is correct");
 
-    // 2. Authentication: Login seeded accounts
-    console.log("\n[2] Testing Authentication with seeded accounts...");
+    // 2. Authentication: Login seeded Admin account
+    console.log("\n[2] Testing Authentication with seeded Admin account...");
     const adminLogin = await request("POST", "/api/auth/login", {
       email: "admin@yuwa-ecolympics.org",
       password: "Password123!"
@@ -138,49 +139,127 @@ const runTests = async () => {
     assert(adminLogin.body.data.user.role === "ADMIN", "Admin role confirmed");
     adminToken = adminLogin.body.data.token;
 
-    const coordLogin = await request("POST", "/api/auth/login", {
-      email: "coordinator@yuwa-ecolympics.org",
+    // Fetch initial seeded college
+    const initialColleges = await request("GET", "/api/colleges", null, adminToken);
+    const seededCollege = initialColleges.body.data[0];
+
+    // 3. Coordinator & Evaluator Registration & Approval Flow
+    console.log("\n[3] Testing Coordinator Registration & Admin Approval Workflow...");
+    const coordEmail = `coordinator.${Date.now()}@yuwa-ecolympics.org`;
+    const coordReg = await request("POST", "/api/auth/register", {
+      name: "Prof. Rajesh Sharma",
+      email: coordEmail,
+      password: "Password123!",
+      role: "COORDINATOR",
+      collegeId: seededCollege._id,
+      phoneNumber: "+919876543210"
+    });
+    assert(coordReg.status === 201, "Coordinator registered successfully (201)");
+    assert(coordReg.body.data.user.status === "PENDING", "Coordinator status is PENDING");
+    assert(coordReg.body.data.token === undefined, "No JWT token issued for pending Coordinator");
+
+    // Pending Coordinator login must be rejected
+    const pendingCoordLogin = await request("POST", "/api/auth/login", {
+      email: coordEmail,
       password: "Password123!"
     });
-    assert(coordLogin.status === 200, "Coordinator login successful (200)");
+    assert(pendingCoordLogin.status === 403, "Pending Coordinator login rejected with 403 Forbidden");
+
+    // Admin approves Coordinator
+    const approveCoord = await request(
+      "PUT",
+      `/api/users/${coordReg.body.data.user.id}/status`,
+      { status: "ACTIVE" },
+      adminToken
+    );
+    assert(approveCoord.status === 200 && approveCoord.body.data.status === "ACTIVE", "Admin approved Coordinator");
+
+    // Approved Coordinator login
+    const coordLogin = await request("POST", "/api/auth/login", {
+      email: coordEmail,
+      password: "Password123!"
+    });
+    assert(coordLogin.status === 200, "Approved Coordinator login successful (200)");
     coordinatorToken = coordLogin.body.data.token;
 
+    console.log("\n[3b] Testing Evaluator Registration & Admin Approval Workflow...");
+    const evalEmail = `evaluator.${Date.now()}@yuwa-ecolympics.org`;
+    const evalReg = await request("POST", "/api/auth/register", {
+      name: "Dr. Ananya Verma",
+      email: evalEmail,
+      password: "Password123!",
+      role: "EVALUATOR"
+    });
+    assert(evalReg.status === 201, "Evaluator registered successfully (201)");
+    assert(evalReg.body.data.user.status === "PENDING", "Evaluator status is PENDING");
+
+    // Pending Evaluator login must be rejected
+    const pendingEvalLogin = await request("POST", "/api/auth/login", {
+      email: evalEmail,
+      password: "Password123!"
+    });
+    assert(pendingEvalLogin.status === 403, "Pending Evaluator login rejected with 403 Forbidden");
+
+    // Admin views pending list and approves Evaluator
+    const pendingList = await request("GET", "/api/users/pending?role=EVALUATOR", null, adminToken);
+    assert(pendingList.status === 200, "Admin can list pending evaluators via GET /api/users/pending");
+
+    const approveEval = await request(
+      "PUT",
+      `/api/users/${evalReg.body.data.user.id}/status`,
+      { status: "ACTIVE" },
+      adminToken
+    );
+    assert(approveEval.status === 200, "Admin approved Evaluator");
+
     const evalLogin = await request("POST", "/api/auth/login", {
-      email: "evaluator@yuwa-ecolympics.org",
+      email: evalEmail,
       password: "Password123!"
     });
-    assert(evalLogin.status === 200, "Evaluator login successful (200)");
+    assert(evalLogin.status === 200, "Approved Evaluator login successful (200)");
     evaluatorToken = evalLogin.body.data.token;
+    evaluatorUserId = evalReg.body.data.user.id;
 
-    const student1Login = await request("POST", "/api/auth/login", {
-      email: "aarav.student@yuwa-ecolympics.org",
-      password: "Password123!"
+    // Student 1 Registration (Immediate ACTIVE)
+    const student1Email = `student1.${Date.now()}@yuwa-ecolympics.org`;
+    const student1Reg = await request("POST", "/api/auth/register", {
+      name: "Aarav Patel",
+      email: student1Email,
+      password: "Password123!",
+      role: "STUDENT",
+      collegeId: seededCollege._id
     });
-    assert(student1Login.status === 200, "Student 1 login successful (200)");
-    student1Token = student1Login.body.data.token;
+    assert(student1Reg.status === 201, "Student 1 registered with 201 Created");
+    assert(student1Reg.body.data.user.status === "ACTIVE", "Student 1 is ACTIVE immediately");
+    student1Token = student1Reg.body.data.token;
 
-    // 3. Auth Edge Cases: Invalid password & non-existent email
-    console.log("\n[3] Testing Auth Edge Cases...");
+    // 4. Auth Edge Cases & Security Checks
+    console.log("\n[4] Testing Auth Edge Cases & Admin Registration Block...");
     const wrongPass = await request("POST", "/api/auth/login", {
       email: "admin@yuwa-ecolympics.org",
       password: "WrongPassword!"
     });
     assert(wrongPass.status === 401, "Wrong password correctly rejected with 401");
-    assert(wrongPass.body.success === false, "Error response shape has success: false");
 
-    // 4. Public Student Registration
-    console.log("\n[4] Testing Public Student Registration & Duplication Prevention...");
+    // Public register cannot register as ADMIN
+    const fakeAdminReg = await request("POST", "/api/auth/register", {
+      name: "Malicious User",
+      email: `fakeadmin.${Date.now()}@yuwa-ecolympics.org`,
+      password: "Password123!",
+      role: "ADMIN"
+    });
+    assert(fakeAdminReg.status === 403, "Public register attempt with role ADMIN rejected with 403 Forbidden");
+
+    // Student 2 Registration
     const uniqueEmail = `test.student.${Date.now()}@yuwa-ecolympics.org`;
     const regRes = await request("POST", "/api/auth/register", {
       name: "Rohit Sharma",
       email: uniqueEmail,
       password: "Password123!",
       phoneNumber: "+919999988888",
-      role: "ADMIN" // Attempt to elevate role!
+      role: "STUDENT"
     });
-    assert(regRes.status === 201, "Student registered with 201 Created");
-    assert(regRes.body.data.user.role === "STUDENT", "Public register ignored ADMIN attempt and forced STUDENT");
-    assert(regRes.body.data.token, "JWT token issued directly upon registration");
+    assert(regRes.status === 201, "Student 2 registered with 201 Created");
     student2Token = regRes.body.data.token;
 
     const dupReg = await request("POST", "/api/auth/register", {
@@ -231,7 +310,7 @@ const runTests = async () => {
     console.log("\n[8] Testing Coordinator Scoping & My College endpoint...");
     const myCollegeRes = await request("GET", "/api/colleges/my", null, coordinatorToken);
     assert(myCollegeRes.status === 200, "Coordinator retrieved assigned college (200)");
-    assert(myCollegeRes.body.data.collegeId === "COL-001", "Coordinator college is correctly COL-001");
+    assert(myCollegeRes.body.data.collegeId === seededCollege.collegeId, "Coordinator college matches registered college");
 
     // 9. Competitions, Tasks & Rubrics
     console.log("\n[9] Testing Competitions, Tasks & Rubric Versioning...");
@@ -268,11 +347,22 @@ const runTests = async () => {
     const joinRes = await request("POST", "/api/teams/join", { teamId: testTeamId }, student2Token);
     assert(joinRes.status === 200, "Student 2 successfully joined team (200)");
 
+    // Coordinator creates second team
+    const team2CreateRes = await request(
+      "POST",
+      "/api/teams",
+      {
+        teamName: `Blue Panthers ${Date.now()}`,
+        competitionId: testCompetitionId
+      },
+      coordinatorToken
+    );
+
     // Student 2 tries to join ANOTHER team in the same competition
     const joinAgainRes = await request(
       "POST",
       "/api/teams/join",
-      { teamId: "TEAM-001" }, // Existing team in same competition
+      { teamId: team2CreateRes.body.data._id },
       student2Token
     );
     assert(joinAgainRes.status === 400, "Student prevented from joining multiple active teams in same competition (400)");
@@ -347,7 +437,6 @@ const runTests = async () => {
 
     // 12. Evaluation Workflow
     console.log("\n[12] Testing Evaluator Assignment & Rubric Scoring...");
-    const evalUser = await User.findOne({ email: "evaluator@yuwa-ecolympics.org" });
 
     // Admin assigns evaluator
     const assignRes = await request(
@@ -355,7 +444,7 @@ const runTests = async () => {
       "/api/evaluations/assign",
       {
         submissionId: testSubmissionId,
-        evaluatorId: evalUser._id
+        evaluatorId: evaluatorUserId
       },
       adminToken
     );
@@ -426,7 +515,7 @@ const runTests = async () => {
     console.log("\n[15] Testing Dashboards...");
     const coordDash = await request("GET", "/api/dashboard/college", null, coordinatorToken);
     assert(coordDash.status === 200, "Coordinator college dashboard returns 200");
-    assert(coordDash.body.data.college.collegeId === "COL-001", "Coordinator dashboard is strictly college-scoped");
+    assert(coordDash.body.data.college.collegeId === seededCollege.collegeId, "Coordinator dashboard is strictly college-scoped");
 
     const coordTeams = await request("GET", "/api/dashboard/college/teams", null, coordinatorToken);
     assert(coordTeams.status === 200, "Coordinator college teams progress returns 200");

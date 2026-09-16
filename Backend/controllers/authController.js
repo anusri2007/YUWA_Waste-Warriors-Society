@@ -27,19 +27,38 @@ const formatUserResponse = (user) => ({
   phoneNumber: user.phoneNumber || null
 });
 
-// @desc    Register a new student
+// @desc    Register a new user (Student / Coordinator / Evaluator)
 // @route   POST /api/auth/register
 // @access  Public
 const register = async (req, res) => {
   try {
-    const { name, email, password, phoneNumber } = req.body;
+    const { name, username, email, password, phoneNumber, role, collegeId } = req.body;
+    const displayName = (name || username || "").trim();
 
-    if (!name || !email || !password) {
+    if (!displayName || !email || !password) {
       return sendError(res, "Name, email and password are required", 400);
     }
 
     if (password.length < 6) {
       return sendError(res, "Password must be at least 6 characters long", 400);
+    }
+
+    // Critical security: Public registration must NEVER allow ADMIN role
+    if (role && role.toString().toUpperCase() === ROLES.ADMIN) {
+      return sendError(res, "Admin registration is not allowed.", 403);
+    }
+
+    let targetRole = ROLES.STUDENT;
+    if (role) {
+      const upperRole = role.toString().toUpperCase();
+      if (![ROLES.STUDENT, ROLES.COORDINATOR, ROLES.EVALUATOR].includes(upperRole)) {
+        return sendError(
+          res,
+          `Invalid role specified. Allowed roles for registration: ${[ROLES.STUDENT, ROLES.COORDINATOR, ROLES.EVALUATOR].join(", ")}`,
+          400
+        );
+      }
+      targetRole = upperRole;
     }
 
     const normalizedEmail = email.toLowerCase().trim();
@@ -49,18 +68,34 @@ const register = async (req, res) => {
       return sendError(res, "User with this email already exists", 409);
     }
 
+    // Students are ACTIVE immediately; Coordinator & Evaluator are PENDING admin approval
+    const targetStatus = targetRole === ROLES.STUDENT ? USER_STATUS.ACTIVE : USER_STATUS.PENDING;
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Critical security: Public registration ALWAYS creates STUDENT role only
     const user = await User.create({
-      name: name.trim(),
+      name: displayName,
       email: normalizedEmail,
       password: hashedPassword,
-      role: ROLES.STUDENT,
-      status: USER_STATUS.ACTIVE,
+      role: targetRole,
+      status: targetStatus,
+      collegeId: collegeId || null,
       phoneNumber: phoneNumber ? phoneNumber.trim() : null
     });
 
+    // If account is PENDING approval, do NOT issue an active JWT token
+    if (targetStatus === USER_STATUS.PENDING) {
+      return sendSuccess(
+        res,
+        "Registration successful. Your account is pending admin approval.",
+        {
+          user: formatUserResponse(user)
+        },
+        201
+      );
+    }
+
+    // For ACTIVE students, issue JWT token for immediate access
     const token = generateToken(user._id, user.role);
 
     return sendSuccess(
@@ -95,14 +130,18 @@ const login = async (req, res) => {
       return sendError(res, "Invalid email or password", 401);
     }
 
-    if (user.status === USER_STATUS.BLOCKED) {
-      return sendError(res, "Your account has been blocked. Please contact admin.", 403);
-    }
-
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return sendError(res, "Invalid email or password", 401);
+    }
+
+    if (user.status === USER_STATUS.PENDING) {
+      return sendError(res, "Your account is pending admin approval.", 403);
+    }
+
+    if (user.status === USER_STATUS.BLOCKED) {
+      return sendError(res, "Your account has been blocked. Please contact admin.", 403);
     }
 
     const token = generateToken(user._id, user.role);
